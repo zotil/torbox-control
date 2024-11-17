@@ -372,3 +372,33 @@ class TorControl:
             command += f" REASON={reason}"
         return self.send_command(command)
 
+    def extend_circuit(self, circuit_id, *nodes):
+        """
+        Extend an existing circuit by appending nodes.
+
+        Args:
+            circuit_id (str): The ID of the circuit to extend.
+            nodes: List of node fingerprints or nicknames.
+
+        Returns:
+            str: The response from Tor control.
+        """
+        nodes_str = ",".join(nodes)
+        command = f"EXTENDCIRCUIT {circuit_id} {nodes_str}"
+        return self.send_command(command)
+
+    def close_circuit(self, circuit_id, reason=None):
+        """
+        Close a circuit.
+
+        Args:
+            circuit_id (str): The ID of the circuit to close.
+            reason (str, optional): The reason for closing (optional).
+
+        Returns:
+            str: The response from Tor control.
+        """
+        command = f"CLOSECIRCUIT {circuit_id}"
+        if reason:
+            command += f" REASON={reason}"
+        return self.send_command(command)
