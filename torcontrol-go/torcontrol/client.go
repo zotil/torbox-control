@@ -56,7 +56,7 @@ func (c *Client) sendCommand(command string) (string, error) {
 		return "", fmt.Errorf("failed to flush command: %w", err)
 	}
 
-	// Download the full response until "250 OK" or a similar termination line
+	// Read the full response until "250 OK" or a similar termination line
 	var response strings.Builder
 	for {
 		line, err := c.reader.ReadString('\n')

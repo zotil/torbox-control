@@ -26,6 +26,6 @@ func main() {
 	}
 	fmt.Println("Monitoring bandwidth events...")
 	for event := range client.WatchBandwidth() {
-		fmt.Printf("Download: %s bytes, Upload: %s bytes\n", event.Download, event.Upload)
+		fmt.Printf("Time: %s, Read: %s bytes, Written: %s bytes\n", event.Time, event.Read, event.Written)
 	}
 }

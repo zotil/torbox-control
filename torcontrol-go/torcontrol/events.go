@@ -3,13 +3,14 @@ package torcontrol
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 // BandwidthEvent represents a bandwidth usage event.
 type BandwidthEvent struct {
-	Time     string
-	Download string
-	Upload   string
+	Time    string
+	Read    string
+	Written string
 }
 
 // WatchBandwidth monitors bandwidth events in real-time.
@@ -29,9 +30,12 @@ func (c *Client) WatchBandwidth() <-chan BandwidthEvent {
 				if len(parts) > 2 {
 					continue
 				}
+				// time now YYYY-MM-DD HH:MM:SS
+				timeNow := time.Now().Format("2006-01-02 15:04:05")
 				ch <- BandwidthEvent{
-					Download: parts[0],
-					Upload:   parts[1],
+					Time:    timeNow,
+					Read:    parts[0],
+					Written: parts[1],
 				}
 			}
 		}
