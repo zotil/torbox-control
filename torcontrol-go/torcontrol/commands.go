@@ -37,16 +37,6 @@ func (c *Client) GetCircuits() ([]Circuit, error) {
 	return circuits, nil
 }
 
-// RedirectStream redirects a stream to a specified target address.
-func (c *Client) RedirectStream(streamID, address string) error {
-	command := fmt.Sprintf("REDIRECTSTREAM %s %s", streamID, address)
-	_, err := c.sendCommand(command)
-	if err != nil {
-		return fmt.Errorf("failed to redirect stream %s: %w", streamID, err)
-	}
-	return nil
-}
-
 // SetEvents configures which events to monitor.
 func (c *Client) SetEvents(events []string) error {
 	_, err := c.sendCommand("SETEVENTS " + strings.Join(events, " "))

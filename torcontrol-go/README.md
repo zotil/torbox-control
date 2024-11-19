@@ -8,7 +8,7 @@
 
 ### **Overview**
 
-The `TorControl` Go implementation provides a library to interact with the Tor control port, enabling control and monitoring of circuits, streams, nodes, and configurations. It is designed for developers building custom applications with Tor integration.
+The `TorControl` Go implementation provides a library to interact with the Tor control port, enabling control and monitoring of circuits, nodes, and configurations. It is designed for developers building custom applications with Tor integration.
 
 This library supports:
 - Circuit management
@@ -23,7 +23,7 @@ This library supports:
 - **Circuit Management**: Retrieve, extend, and close Tor circuits.
 - **Node Information**: Fetch detailed information about specific Tor nodes.
 - **Configuration Updates**: Modify and reload Tor configurations programmatically.
-- **Event Monitoring**: Real-time monitoring of bandwidth, streams, and circuit events.
+- **Event Monitoring**: Real-time monitoring of bandwidth, and circuit events.
 - **Authentication**: Securely connect to the Tor control port using a password.
 
 ---
