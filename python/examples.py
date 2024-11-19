@@ -1,3 +1,9 @@
+import time
+from tor_control import TorControl, TORBOX_IP_MINI
+
+tor_control = TorControl(torbox_ip=TORBOX_IP_MINI)
+tor_control.authenticate(password="CHANGE-IT")
+
 #------------------------
 # EXAMPLES FROM README
 #------------------------
@@ -8,8 +14,14 @@
 # node_info = tor_control.get_node_info("89EEAFA5830FA551516091524654BDE14792A812")  # fake fingerprint -> error
 # print(node_info)
 
+# GETCONF
 # print(tor_control.get_conf("SocksPort"))
+
+# SETCONF
 # tor_control.set_conf(DisableNetwork="1")
+# tor_control.reload_config()
+# time.sleep(3)
+# tor_control.set_conf(DisableNetwork="0")
 # tor_control.reload_config()
 
 #-----------------
@@ -24,13 +36,10 @@
 # Get circuits list
 # circuits = tor_control.get_circuits()
 # from pprint import pprint
-# print(circuits)
+# pprint(circuits)
 
 # Get outbound connections
 # connections = tor_control.get_outbound_connections()
 # for conn in connections:
 #     print(f"Connection to {conn['node']['router']['ip']} ({conn['fingerprint']}) is {conn['status']}")
-
-# print(tor_control.get_log())
-# for c in tor_control.watch_circuits():
-#     print(c)
+#-----------------
