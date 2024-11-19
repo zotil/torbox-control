@@ -6,7 +6,7 @@
 
 ### **Overview**
 
-The `TorControl` class is a Python implementation for interacting with the Tor control port. It provides functionality to manage Tor circuits, streams, nodes, configurations, and events, allowing for complete control and monitoring of a Tor instance.
+The `TorControl` class is a Python implementation for interacting with the Tor control port. It provides functionality to manage Tor circuits, nodes, configurations, and events, allowing for complete control and monitoring of a Tor instance.
 
 ---
 
@@ -16,16 +16,13 @@ The `TorControl` class is a Python implementation for interacting with the Tor c
 - **Circuits Management:**
     - Retrieve and format active circuits.
     - Extend or close circuits.
-- **Stream Management:**
-    - Redirect and close streams.
-    - Monitor streams in real-time.
 - **Node Information:**
     - Fetch detailed information about Tor nodes using their fingerprints.
 - **Configuration Management:**
     - Modify, reset, and reload Tor configurations.
     - Save and load configurations from files.
 - **Event Monitoring:**
-    - Monitor bandwidth, circuit, and stream events in real-time.
+    - Monitor bandwidth, circuit, and events in real-time.
 - **Outbound Connections:**
     - Fetch active outbound connections using `GETINFO orconn-status`.
 - **Bandwidth Management:**
@@ -87,17 +84,11 @@ tor_control.authenticate("password")
 - **`close_circuit(circuit_id)`**
     - Closes a specified circuit.
 
-#### **3. Streams**
-- **`redirect_stream(stream_id, address)`**
-    - Redirects a stream to a specified address.
-- **`close_stream(stream_id)`**
-    - Closes a specified stream.
-
-#### **4. Nodes**
+#### **5. Nodes**
 - **`get_node_info(fingerprint)`**
     - Retrieves detailed information about a node using its fingerprint.
 
-#### **5. Configuration**
+#### **6. Configuration**
 - **`set_conf(**kwargs)`**
     - Sets configuration parameters.
 - **`reset_conf(*keys)`**
@@ -105,7 +96,7 @@ tor_control.authenticate("password")
 - **`reload_config()`**
     - Reloads the Tor configuration file.
 
-#### **6. Events**
+#### **7. Events**
 - **`set_bandwidth(status: bool)`**
     - Enables or disables bandwidth event reporting.
 - **`bandwidth_events()`**
@@ -124,13 +115,7 @@ for circuit in circuits:
     print(f"Circuit ID: {circuit['id']}, Status: {circuit['status']}")
 ```
 
-#### **2. Redirect a Stream**
-```python
-stream_id = "12345"
-tor_control.redirect_stream(stream_id, "example.com:80")
-```
-
-#### **3. Monitor Bandwidth Events**
+#### **2. Monitor Bandwidth Events**
 ```python
 tor_control.set_bandwidth(True)
 try:
@@ -140,13 +125,13 @@ except KeyboardInterrupt:
     print("Stopped monitoring bandwidth events.")
 ```
 
-#### **4. Get Node Information**
+#### **3. Get Node Information**
 ```python
 node_info = tor_control.get_node_info("89EEAFA5830FA551516091524654BDE14792A812")
 print(node_info)
 ```
 
-#### **5. Manage Configuration**
+#### **4. Manage Configuration**
 ```python
 tor_control.set_conf(DisableNetwork="1")
 tor_control.reload_config()

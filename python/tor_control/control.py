@@ -342,36 +342,7 @@ class TorControl:
         if log_type not in valid_types:
             raise ValueError(f"Invalid log type: {log_type}")
         return self.send_command(f"GETINFO log/{log_type.lower()}")
-
-    def redirect_stream(self, stream_id, address):
-        """
-        Redirect a stream to a specific address.
-
-        Args:
-            stream_id (str): The ID of the stream to redirect.
-            address (str): The address to redirect the stream to.
-
-        Returns:
-            str: The response from Tor control.
-        """
-        return self.send_command(f"REDIRECTSTREAM {stream_id} {address}")
-
-    def close_stream(self, stream_id, reason=None):
-        """
-        Close a specific stream.
-
-        Args:
-            stream_id (str): The ID of the stream to close.
-            reason (str, optional): The reason for closing the stream.
-
-        Returns:
-            str: The response from Tor control.
-        """
-        command = f"CLOSESTREAM {stream_id}"
-        if reason:
-            command += f" REASON={reason}"
-        return self.send_command(command)
-
+    # --------------------------------------------------------------
     def extend_circuit(self, circuit_id, *nodes):
         """
         Extend an existing circuit by appending nodes.
